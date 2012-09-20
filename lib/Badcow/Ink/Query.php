@@ -19,6 +19,11 @@ class Query
     protected $posts = array();
 
     /**
+     * @var \StdClass
+     */
+    protected $wpQuery;
+
+    /**
      * @param array|string $query
      * @return array An array of post objects
      */
@@ -26,14 +31,22 @@ class Query
     {
         $this->posts = array();
 
-        $the_query = new \WP_Query($query);
+        $this->wpQuery = new \WP_Query($query);
 
-        if (null !== $the_query->posts) {
-            foreach($the_query->posts as $post) {
+        if (null !== $this->wpQuery->posts) {
+            foreach($this->wpQuery->posts as $post) {
                 $this->posts[] = new Post($post);
             }
         }
 
         return $this->posts;
+    }
+
+    /**
+     * @return \StdClass
+     */
+    public function getWpQuery()
+    {
+        return $this->wpQuery;
     }
 }
