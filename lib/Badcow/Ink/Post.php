@@ -452,7 +452,7 @@ class Post
         if(0 == $this->parent_id) {
             return null;
         } else {
-            $parent = wp_get_single_post($this->parent_id, 'object');
+            $parent = wp_get_single_post($this->parent_id, OBJECT);
             return new self($parent);
         }
     }
