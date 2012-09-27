@@ -143,6 +143,11 @@ class Post
     protected $customFields = array();
 
     /**
+     * @var array
+     */
+    protected $categories = array();
+
+    /**
      * @param \stdClass $post
      */
     public function __construct(\stdClass $post)
@@ -173,6 +178,7 @@ class Post
         $this->filter = $post->filter;
         $this->permalink = get_permalink($this->id);
         $this->customFields = get_post_custom($this->id);
+        $this->categories = \wp_get_post_categories($this->id);
     }
 
     /**
@@ -479,5 +485,15 @@ class Post
         $url = wp_get_attachment_image_src($attachment_id, $size);
 
         return $url?$url[0]:false;
+    }
+
+    /**
+     * Return an array of categories
+     *
+     * @return array
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }
