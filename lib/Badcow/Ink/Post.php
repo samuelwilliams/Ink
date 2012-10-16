@@ -496,4 +496,19 @@ class Post
     {
         return $this->categories;
     }
+
+    /**
+     * Check if post is in a particular category
+     *
+     * @param string|int $identifier
+     * @return bool
+     */
+    public function inCategory($identifier)
+    {
+        if (!is_int($identifier)) {
+            $identifier = get_cat_ID($identifier);
+        }
+
+        return in_array($identifier, $this->categories);
+    }
 }
