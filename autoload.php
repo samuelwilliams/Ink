@@ -28,11 +28,13 @@ function autoload($className)
     require $fileName;
 }
 
+//Require the Twig autoloader
+$twigAutoloaderFile = __DIR__.'/lib/vendor/Twig/lib/Twig/Autoloader.php';
+
+if (file_exists($twigAutoloaderFile)) {
+    require_once $twigAutoloaderFile;
+    Twig_Autoloader::register();
+}
+
 //Register the Ink autoloader
 spl_autoload_register('autoload');
-
-//Require the Twig autoloader
-require_once(__DIR__.'/lib/vendor/Twig/lib/Twig/Autoloader.php');
-
-//Warm-up the Twig environment
-Twig_Autoloader::register();
