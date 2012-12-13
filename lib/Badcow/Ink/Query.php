@@ -9,7 +9,7 @@
  */
 
 namespace Badcow\Ink;
-use badcow\Ink\Post;
+use Badcow\Ink\Post;
 
 class Query
 {
