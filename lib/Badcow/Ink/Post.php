@@ -148,9 +148,9 @@ class Post
     protected $categories = array();
 
     /**
-     * @param \stdClass $post
+     * @param object $post
      */
-    public function __construct(\stdClass $post)
+    public function __construct( $post)
     {
         $this->id = $post->ID;
         $this->author = $post->post_author;
@@ -178,7 +178,7 @@ class Post
         $this->filter = $post->filter;
         $this->permalink = get_permalink($this->id);
         $this->customFields = get_post_custom($this->id);
-        $this->categories = \wp_get_post_categories($this->id);
+        $this->categories = wp_get_post_categories($this->id);
     }
 
     /**
