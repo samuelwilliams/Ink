@@ -20,9 +20,8 @@ This is, by no means, and exhaustive replacement for traditional WordPress templ
 cannot (yet) do that PHP does, you can still use a normal template file.
 
 ##Installing Ink
-In your base WordPress directory:
-
-    $ git clone git@github.com:samuelwilliams/Ink.git Ink/
+[Get Composer](http://getcomposer.org/download/)
+    composer.phar install badcow/ink
 
 ##Compare Twig to PHP
 Below we will compare two files that both achieve the same thing; they both render a page and list other pages. The
