@@ -286,12 +286,29 @@ class Site
     }
 
     /**
+     * Render the WordPress footer scripts
+     *
      * @return string
      */
     public function getWpFooter()
     {
         ob_start();
         wp_footer();
+        $footer = ob_get_contents();
+        ob_end_clean();
+
+        return $footer;
+    }
+
+    /**
+     * Render WordPress header scripts
+     *
+     * @return string
+     */
+    public function getWpHeader()
+    {
+        ob_start();
+        wp_head();
         $footer = ob_get_contents();
         ob_end_clean();
 
