@@ -292,12 +292,7 @@ class Site
      */
     public function getWpFooter()
     {
-        ob_start();
-        wp_footer();
-        $footer = ob_get_contents();
-        ob_end_clean();
-
-        return $footer;
+        return self::buffer('wp_footer');
     }
 
     /**
@@ -307,11 +302,23 @@ class Site
      */
     public function getWpHeader()
     {
+        return self::buffer('wp_head');
+    }
+
+    /**
+     * Buffers output of callback
+     *
+     * @param $callback
+     * @param array $args
+     * @return string
+     */
+    public static function buffer(callable $callback, array $args = array())
+    {
         ob_start();
-        wp_head();
-        $footer = ob_get_contents();
+        call_user_func_array($callback, $args);
+        $output = ob_get_contents();
         ob_end_clean();
 
-        return $footer;
+        return $output;
     }
 }
