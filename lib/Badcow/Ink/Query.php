@@ -9,7 +9,7 @@
  */
 
 namespace Badcow\Ink;
-use Badcow\Ink\Post;
+use Badcow\Ink\Post as InkPost;
 
 class Query
 {
@@ -19,13 +19,14 @@ class Query
     protected $posts = array();
 
     /**
-     * @var \StdClass
+     * @var object
      */
     protected $wpQuery;
 
     /**
      * @param array|string $query
      * @return array An array of post objects
+     * @deprecated Just use the static method
      */
     public function getPosts($query)
     {
@@ -40,6 +41,24 @@ class Query
         }
 
         return $this->posts;
+    }
+
+    /**
+     * @param array|string $query
+     * @return array<InkPost>
+     */
+    public static function query($query)
+    {
+        $posts = array();
+        $wpQuery = new \WP_Query($query);
+
+        if (null !== $wpQuery->posts) {
+            foreach($wpQuery->posts as $post) {
+                $posts[] = new InkPost($post);
+            }
+        }
+
+        return $posts;
     }
 
     /**
