@@ -441,13 +441,23 @@ class Post
      * @param string $field
      * @return string
      */
-    public function getSingleCustomField($field)
+    public function getField($field)
     {
         if(!array_key_exists($field, $this->customFields)) {
             return '';
         }
 
         return $this->customFields[$field][0];
+    }
+
+    /**
+     * @deprecated Use Post::getField() instead
+     * @param $field
+     * @return string
+     */
+    public function getSingleCustomField($field)
+    {
+        return $this->getField($field);
     }
 
     /**
