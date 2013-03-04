@@ -14,5 +14,8 @@
     },
     "autoload": {
         "psr-0": { "Badcow": "lib/" }
+    },
+    "suggest": {
+        "badcow/lorem-ipsum": "Generates lorem ipsum for use as place holder."
     }
 }
