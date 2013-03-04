@@ -24,6 +24,7 @@ class Extension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFilter('dump', array($this, 'dump')),
+            new \Twig_SimpleFilter('shortcode', 'do_shortcode')
         );
     }
 
