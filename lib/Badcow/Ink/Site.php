@@ -308,12 +308,17 @@ class Site
     /**
      * Buffers output of callback
      *
-     * @param $callback
+     * @param callable $callback
      * @param array $args
      * @return string
+     * @throws \ErrorException
      */
-    public static function buffer(callable $callback, array $args = array())
+    public static function buffer($callback, array $args = array())
     {
+        if (!is_callable($callback)) {
+            throw new \ErrorException('Callback must be callable.');
+        }
+
         ob_start();
         call_user_func_array($callback, $args);
         $output = ob_get_contents();
