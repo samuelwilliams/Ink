@@ -34,7 +34,8 @@ class Extension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('queryPosts', array('Badcow\Ink\Query', 'query'))
+            new \Twig_SimpleFunction('queryPosts', array('Badcow\Ink\Query', 'query')),
+            new \Twig_SimpleFunction('renderSidebar', array($this, 'renderSidebar')),
         );
     }
 
@@ -70,5 +71,14 @@ class Extension extends \Twig_Extension
     public function getName()
     {
         return self::NAME;
+    }
+
+    /**
+     * @param $index
+     * @return string
+     */
+    public function renderSidebar($index)
+    {
+        return Site::buffer('dynamic_sidebar', array($index));
     }
 }
